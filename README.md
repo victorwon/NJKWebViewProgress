@@ -10,13 +10,13 @@ NJKWebViewProgress don't use CocoaTouch's private methods. It's AppStore safe.
 - ARC
 
 # Usage
-Instance `NJKWebViewProgress` and set `UIWebViewDelegate`. If you set `webViewProxyDelegate`, `NJKWebViewProgress` suould perform as a proxy object.
+Instance `NJKWebViewProgress` and set `UIWebViewDelegate`. If you set `webViewProxyDelegate`, `NJKWebViewProgress` should perform as a proxy object.
 
 ```objc
-NJKWebViewProgress *progressProxy = [[NJKWebViewProgress alloc] init];
-webView.delegate = progressProxy;
-progressProxy.webViewProxyDelegate = self;
-progressProxy.progressDelegate = self;
+_progressProxy = [[NJKWebViewProgress alloc] init]; // instance variable
+webView.delegate = _progressProxy;
+_progressProxy.webViewProxyDelegate = self;
+_progressProxy.progressDelegate = self;
 ```
 
 When UIWebView start loading, `NJKWebViewProgress` call delegate method and block with progress.
@@ -32,6 +32,8 @@ progressProxy.progressBlock = ^(float progress) {
     [progressView setProgress:progress animated:NO];
 };
 ```
+
+This repository contains iOS 7 Safari style bar `NJKWebViewProgressView`. You can choose `NJKWebViewProgressView`, `UIProgressView` or your custom bar.
 
 # Install
 ## CocoaPods
